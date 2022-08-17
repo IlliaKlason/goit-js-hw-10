@@ -7,14 +7,86 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
-  color: #212121;
+
+  background-image: url(../images/world.jpeg);
+  background-repeat: no-repeat;
   line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #search-box {
   font: inherit;
   padding: 8px;
-  max-width: 320px;
-  margin-bottom: 16px;
+  width: 200px;
+  border-radius: 20px;
+  color: brown;
+  transition: transform, 1.2s;
+}
+
+#search-box:hover,
+#search-box:focus {
+  width: 300px;
+}
+
+ul {
+  list-style: none;
+  width: 350px;
+  padding-left: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+li > img {
+  height: 50px;
+}
+
+div > img {
+  width: 300px;
+  display: block;
+  margin: auto;
+  padding: 15px;
+}
+
+div.country,
+ul {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  width: 350px;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  color: black;
+}
+
+.country-body {
+  display: block;
+  margin: auto;
+  padding: 10px;
+  margin-left: 30px;
+}
+
+.country-body > h3 {
+  text-decoration: underline;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+header h1 {
+  font-size: 30px;
+  font-weight: 600;
+  color: brown;
+  text-shadow: 0px 0px 5px #c0c0c0, 0px 0px 10px #c0c0c0, 0px 0px 10px #c0c0c0,
+    0px 0px 20px #c0c0c0;
 }
