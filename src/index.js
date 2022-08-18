@@ -1,67 +1,66 @@
 import Notiflix from 'notiflix';
-import 'notiflix/dist/notiflix-3.2.5.min.css';
 import debounce from 'lodash.debounce';
-import './css/styles.css';
 import { fetchCountries } from './js/fetchCountries';
+import 'notiflix/dist/notiflix-3.2.5.min.css';
+import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
 
-const searchBox = document.querySelector('#search-box');
+// Оставил как пример
+// const input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-const searchCountry = e => {
-   const searchTerm = searchBox.value.trim();
 
-   fetchCountries(searchTerm)
+const getRandomHexColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+
+const searchCountry = e => {
+   const searchName = searchBox.value.trim();
+
+   fetchCountries(searchName)
       .then(data => {
          countriesData(data);
       })
-      .catch(error => {
-         if (searchTerm !== '') {
+      .catch(() => {
+         if (searchName !== '') {
             Notiflix.Notify.failure('Oops, there is no country with that name');
          }
       });
 
    e.preventDefault();
 };
+searchBox.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
 
 function countriesData(data) {
+   clearData(countryList);
+   clearData(countryInfo);
    if (data.length > 10) {
-      clearData(countryList);
-      clearData(countryInfo);
 
       Notiflix.Notify.info(
          'Too many matches found. Please enter a more specific name.'
       );
    } else if (data.length > 1 && data.length <= 10) {
-      clearData(countryList);
-      clearData(countryInfo);
-
       return (countryList.innerHTML = data
          .map(
-            item => `
+            ({ flags: { svg }, name: { common } }) => `
                     <li class = 'country'>
-                        <img src = '${item.flags.svg}' />
-                        <p>${item.name.official}</p>
+                        <img src = '${svg}' />
+                        <p style='color: ${getRandomHexColor()}'>${common}</p>
                     </li>
                 `
          )
          .join(''));
    } else {
-      clearData(countryList);
-      clearData(countryInfo);
-
       return (countryInfo.innerHTML = data
          .map(
-            item => `
+            ({ flags: { svg }, name: { common }, capital, population, languages }) => `
                     <div class = 'country'>
-                        <img src = '${item.flags.svg}' />
+                        <img src = '${svg}' />
                         <div class = 'country-body'>
-                            <h3>${item.name.official}</h3>
-                            <p><b>Capital: </b> ${item.capital}</p>
-                            <p><b>Population: </b> ${item.population}</p>
-                            <p><b>Languages: </b> ${Object.values(item.languages)}</p>
+                            <h3>${common}</h3>
+                            <p><b>Capital: </b> ${capital}</p>
+                            <p><b>Population: </b> ${population}</p>
+                            <p><b>Languages: </b> ${Object.values(languages)}</p>
                         </div>
                     </div>
                 `
@@ -70,9 +69,10 @@ function countriesData(data) {
    }
 }
 
-searchBox.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
-
-function clearData(output) {
-   output.innerHTML = '';
+function clearData(element) {
+   element.innerHTML = '';
 }
-document.querySelector('#search-box').placeholder = 'Search for any country...';
+
+searchBox.placeholder = 'Find information about country...';
+// Оставил как пример
+// document.querySelector('#searchBox').placeholder = 'Find information about country...';
