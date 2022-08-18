@@ -10,6 +10,7 @@ body {
 
   background-image: url(../images/world.jpeg);
   background-repeat: no-repeat;
+  background-size: cover;
   line-height: 1.5;
   display: flex;
   flex-direction: column;
@@ -19,7 +20,7 @@ body {
 
 .search-box {
   font: inherit;
-  padding: 8px;
+  padding: 12px;
   width: 350px;
   border-radius: 20px;
   color: brown;
