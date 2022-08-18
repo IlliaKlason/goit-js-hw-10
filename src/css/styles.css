@@ -19,9 +19,9 @@ body {
 }
 
 .search-box {
-  font: inherit;
+  font-size: 25px;
   padding: 12px;
-  width: 350px;
+  width: 400px;
   border-radius: 20px;
   color: brown;
   transition: transform, 1.2s;
@@ -40,27 +40,28 @@ li {
 }
 
 li > img {
-  height: 60px;
+  height: 100px;
 }
 
 li > p {
   text-align: center;
   margin: 0;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   padding: 10px 30px 10px 30px;
 }
 div > img {
-  width: 300px;
+  width: 400px;
   display: block;
   margin: auto;
-  padding: 15px;
+  padding-top: 25px;
 }
 
 div.country,
 ul {
+  margin-top: 100px;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  width: 350px;
+  width: 500px;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 0.15);
@@ -77,6 +78,12 @@ ul {
 
 .country-body > h3 {
   text-decoration: underline;
+  font-weight: bold;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.country-body > p {
+  font-size: 18px;
 }
 
 header {
