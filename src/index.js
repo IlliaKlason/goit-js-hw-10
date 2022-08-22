@@ -40,16 +40,15 @@ function countriesData(data) {
          'Too many matches found. Please enter a more specific name.'
       );
    } else if (data.length > 1 && data.length <= 10) {
-      return (countryList.innerHTML = data
-         .map(
-            ({ flags: { svg }, name: { common } }) => `
+      const { flags: { svg }, name: { common } } = data[0]
+      return (countryList.innerHTML =
+         `
                     <li class = 'country'>
                         <img src = '${svg}' />
                         <p style='color: ${getRandomHexColor()}'>${common}</p>
                     </li>
                 `
-         )
-         .join(''));
+      );
    } else {
       return (countryInfo.innerHTML = data
          .map(
